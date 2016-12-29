@@ -1,0 +1,41 @@
+<html>
+<head>
+	<title>I can Use Filestack</title>
+    <link href="./main.css" rel="stylesheet">
+</head>
+<body>
+
+<div>
+  <button id="button" onClick="pickMe()">Click Me</button>
+</div>
+<div>
+  <img id="instagram" src=""></img>
+</div>
+
+  <script src="https://api.filestackapi.com/filestack.js"></script>
+  <script type="text/javascript">
+    filepicker.setKey("AhTgLagciQByzXpFGRI0Az");
+
+
+function pickMe(){
+  filepicker.pick(
+    {
+      mimetype: 'image/*',
+      services: ['COMPUTER', 'FACEBOOK', 'INSTAGRAM', 'GOOGLE_DRIVE', 'DROPBOX']
+    },
+    function(Blob){
+      console.log(JSON.stringify(Blob));
+      console.log(JSON.stringify(Blob.url));
+      document.getElementById("instagram").src = "https://process.filestackapi.com/AhTgLagciQByzXpFGRI0Az/oil_paint=amount:7/resize=width:400/border=width:7/"+Blob.url;
+      document.getElementById("button").innerHTML = "Change Image"; 
+    },
+    function(FPError){
+      console.log(FPError.toString());
+    });
+}
+
+</script>
+
+
+</body>
+</html>
